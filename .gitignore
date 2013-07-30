@@ -1,0 +1,6 @@
+#********** Intellij template**********
+
+*.iml
+*.ipr
+*.iws
+.idea/
