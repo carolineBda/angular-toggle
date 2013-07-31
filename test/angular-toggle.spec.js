@@ -1,26 +1,33 @@
-describe('Toggle Switch', function() {
-    var $scope, elm;
+describe('Angular Toggle', function() {
+    var element;
+
+    var callBackCalled= false;
     var callback = function(){
         console.log('called!');
+        callBackCalled = true;
     };
 
-    var template = '<div class="switch" switch-change="callback"><input type="checkbox" /></div>';
+    var template = '<div class="switch" switch-change="callback()"><input type="checkbox" /></div>';
 
-    function checkbox() {
-        return elm.find('input');
-    }
+    function checkbox() { return element.find('input'); }
 
     beforeEach(module('angular-toggle'));
 
-    beforeEach(inject(function($rootScope, $compile) {
-        $scope = $rootScope.$new();
-        elm = angular.element(template);
-        $compile(elm)($scope);
+    beforeEach(inject(function($compile, $rootScope) {
+        var $scope = $rootScope.$new();
+        element = $compile(angular.element(template))($scope);
         $scope.$digest();
     }));
 
-    it('by default model is false', function() {
-        expect(checkbox.value).toEqual(false);
+    it('bootstrap-switch is called when html initialise', function() {
+        expect(element.find('div').hasClass('switch-off')).toBeTruthy();
+    });
+
+    it('when click the toggle then callback called', function() {
+        element.triggerHandler('click');
+        expect(element.find('div').hasClass('switch-on')).toBeTruthy();
+        expect(element.find('div').hasClass('switch-off')).toBeFalsy();
+        expect(callBackCalled).toBeTruthy();
     });
 
 });

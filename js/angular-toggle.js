@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angular-toggle', []).directive('switch-change', function() {
+angular.module('angular-toggle', []).directive('switchChange', function() {
         return {
             restrict: 'A',
             scope: {
@@ -9,7 +9,7 @@ angular.module('angular-toggle', []).directive('switch-change', function() {
             compile: function() {
                 return {
                     post: function(scope, element) {
-                        $('.switch')['bootstrapSwitch']();
+                        $(element)['bootstrapSwitch']();
                         
                         var clickingCallback = function() {
                             scope.switchChange();
