@@ -9,12 +9,10 @@ angular.module('angular-toggle', []).directive('switchChange', function() {
             compile: function() {
                 return {
                     post: function(scope, element) {
-                        $(element)['bootstrapSwitch']();
-                        
-                        var clickingCallback = function() {
-                            scope.switchChange();
-                        };
-                        element.bind('switch-change', clickingCallback);
+
+                        $(element)['bootstrapSwitch']();// call bootstrapSwitch once the directive is compiled
+
+                        element.bind('switch-change', scope.switchChange);
                     }
                 }
             }
