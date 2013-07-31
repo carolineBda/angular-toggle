@@ -1,12 +1,15 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         karma: {
-            'unit': {
+            unit: {
                 configFile: 'test/karma.conf.js'
             }
         },
         uglify: {
-
+		'angular-toggle': {
+			src: ['js/angular-toggle.js'],
+			dest: 'js/angular-toggle.min.js'			
+		},
         }
     });
 

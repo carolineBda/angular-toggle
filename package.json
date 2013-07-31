@@ -11,6 +11,7 @@
     "karma": "~0.9.6",
     "karma-jasmine": "0.0.3",
     "uglify-js": "~2.3.6",
-    "grunt-contrib-uglify": "~0.2.2"
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-cli": "~0.1.9"
   }
 }
