@@ -32,9 +32,10 @@ describe('Angular Toggle', function() {
 
     describe('toggle directive element', function() {
 
-        template = '<toggle action="callback()"></toggle>';
+        template = '<toggle ng-model="state" action="callback()"></toggle>';
         beforeEach(function() {
-            callBackCalled= false
+            callBackCalled= false;
+            $scope.state = false;
         });
 
         it('call bootstrap-switch when html initialise', function() {
@@ -44,6 +45,14 @@ describe('Angular Toggle', function() {
         it('and call callback when click the toggle', function() {
             element.triggerHandler('switch-change');
             expect(callBackCalled).toBeTruthy();
+        });
+
+        it('and model is change when the toggle is clicked', function() {
+            expect($scope.state).toBeFalsy();
+            element.triggerHandler('switch-change');
+            expect($scope.state).toBeTruthy();
+            element.triggerHandler('switch-change');
+            expect($scope.state).toBeFalsy();
         });
     });
 });

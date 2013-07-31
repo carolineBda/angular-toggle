@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('angular-toggle', []).directive('switchChange', function() {
+angular.module('angular-toggle', [])
+    .directive('switchChange', function() {
         return {
             restrict: 'A',
             scope: {
@@ -22,17 +23,34 @@ angular.module('angular-toggle', []).directive('switchChange', function() {
         return {
             restrict: 'E',
             replace: true,
+            require: 'ngModel',
             scope: {
-                action: "&"
+                action: "&",
+                model: '=ngModel'
             },
             template: '<div class="switch"><input type="checkbox" /></div>',
             compile: function() {
                 return {
-                    post: function(scope, element) {
+                    post: function(scope, element, attrs, ngModel) {
 
                         $(element)['bootstrapSwitch']();// call bootstrapSwitch once the directive is compiled
 
-                        element.bind('switch-change', scope.action);
+                        if (!scope.model) {
+                            scope.model = false;
+                        }
+
+                        var clickingCallback = function() {
+
+                            scope.model = ! scope.model;
+
+                            scope.$apply(function () {
+                                ngModel.$setViewValue(scope.model);
+                            });
+
+                            scope.action();
+                        };
+
+                        element.bind('switch-change', clickingCallback);
                     }
                 }
             }
