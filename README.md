@@ -1,7 +1,7 @@
 angular-toggle
 ================
 
-Directive to use [Bootstrap switch](http://www.larentis.eu/switch/) by Matt Lartentis in angularJS. Allow you to add a toggle switch to your page.
+Directive to use [Bootstrap switch](http://www.larentis.eu/switch/) by Matt Lartentis in angularJS. Allows you to add a toggle switch styled checkbox to your pages with one directive.
 
 ##Installation
 coming soon
