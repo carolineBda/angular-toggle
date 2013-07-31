@@ -9,6 +9,8 @@
     "grunt-karma": "~0.4.4",
     "karma-requirejs": "0.0.3",
     "karma": "~0.9.6",
-    "karma-jasmine": "0.0.3"
+    "karma-jasmine": "0.0.3",
+    "uglify-js": "~2.3.6",
+    "grunt-contrib-uglify": "~0.2.2"
   }
 }
