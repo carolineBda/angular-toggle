@@ -16,3 +16,9 @@ lib-cov
 *.out
 *.pid
 *.gz
+
+#********** Bower **********
+bower_components
+
+test_out/
+.nvm/
