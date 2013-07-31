@@ -13,13 +13,15 @@ describe('Angular Toggle', function() {
         $scope.$digest();
     }));
 
-    it('bootstrap-switch is called when html initialise', function() {
-        expect(element.find('div').hasClass('switch-off')).toBeTruthy();
-    });
+    describe('switch-change attribute directive', function() {
 
-    it('when click the toggle then callback called', function() {
-        element.triggerHandler('switch-change');
-        expect(callBackCalled).toBeTruthy();
-    });
+        it('call bootstrap-switch when html initialise', function() {
+            expect(element.find('div').hasClass('switch-off')).toBeTruthy();
+        });
 
+        it('and call callback when click the toggle', function() {
+            element.triggerHandler('switch-change');
+            expect(callBackCalled).toBeTruthy();
+        });
+    });
 });
