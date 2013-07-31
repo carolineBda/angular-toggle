@@ -1,18 +1,12 @@
 angular-toggle
 ================
 
-Directive to use [Bootstrap switch](http://www.larentis.eu/switch/)  by Matt Lartentis in angularJS
+Directive to use [Bootstrap switch](http://www.larentis.eu/switch/) by Matt Lartentis in angularJS. Allows you to add a toggle switch styled checkbox to your pages with one directive.
+
+##Installation
+coming soon
 
 ##Usage
-    <div ng-controller="MyController">
-        <div class="switch" switch-change="func()">
-            <input type="checkbox" />
-        </div>
-    </div>
+    <toggle ng-model="state" action="callback()"></toggle>
 
-
-    myApp.controller('MyController', function($scope, $window) {
-        $scope.func = function() { 
-            console.log('Clicked');    
-        };
-    });
+Note that state object and callback function must be in your scope
