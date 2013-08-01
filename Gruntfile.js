@@ -6,10 +6,10 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
-		'angular-toggle': {
-			src: ['js/angular-toggle.js'],
-			dest: 'js/angular-toggle.min.js'			
-		},
+            'angular-toggle': {
+                src: ['directives/angular-toggle.js'],
+                dest: 'directives/angular-toggle.min.js'
+            }
         }
     });
 

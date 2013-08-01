@@ -9,7 +9,7 @@ files = [
     'bower_components/jquery/jquery.min.js',
     'bower_components/bootstrap-switch/static/js/bootstrap-switch.js',
 
-    'js/angular-toggle.js',
+    'directives/angular-toggle.js',
     'test/angular-toggle.spec.js'
 ];
 

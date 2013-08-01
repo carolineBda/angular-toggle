@@ -3,7 +3,7 @@ describe('Angular Toggle', function() {
         $scope,
         callBackCalled= false;
     var template;
-    beforeEach(module('angular-toggle'));
+    beforeEach(module('angularToggleDirectives'));
 
     beforeEach(inject(function($compile, $rootScope) {
         $scope = $rootScope.$new();

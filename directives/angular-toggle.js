@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angular-toggle', [])
+angular.module('angularToggleDirectives', [])
     .directive('switchChange', function() {
         return {
             restrict: 'A',

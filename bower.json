@@ -12,7 +12,6 @@
     "ignore": [
         "package.json",
         "test",
-        "Gruntfile.js",
-        "js/angular-toggle.js"
+        "Gruntfile.js"
     ]
 }
