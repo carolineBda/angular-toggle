@@ -1,15 +1,17 @@
 describe('Angular Toggle', function() {
     var element,
-        $scope,
-        callBackCalled= false;
-    var template;
-    beforeEach(module('angularToggleDirectives'));
+        scope,
+        compile,
+        callBackCalled= false,
+        template;
 
+    beforeEach(module('angularToggleDirectives'));
     beforeEach(inject(function($compile, $rootScope) {
-        $scope = $rootScope.$new();
-        $scope.callback = function(){ callBackCalled = true; };
-        element = $compile(angular.element(template))($scope);
-        $scope.$digest();
+        scope = $rootScope.$new();
+        scope.callback = function(){ callBackCalled = true; };
+        compile = $compile;
+        element = compile(angular.element(template))(scope);
+        scope.$digest();
     }));
 
     describe('switch-change directive attribute', function() {
@@ -30,12 +32,12 @@ describe('Angular Toggle', function() {
         });
     });
 
-    describe('toggle directive element', function() {
+    ddescribe('toggle directive element', function() {
 
         template = '<toggle ng-model="state" action="callback()"></toggle>';
         beforeEach(function() {
             callBackCalled= false;
-            $scope.state = false;
+            scope.state = false;
         });
 
         it('call bootstrap-switch when html initialise', function() {
@@ -48,11 +50,18 @@ describe('Angular Toggle', function() {
         });
 
         it('and model is change when the toggle is clicked', function() {
-            expect($scope.state).toBeFalsy();
+            expect(scope.state).toBeFalsy();
             element.triggerHandler('switch-change');
-            expect($scope.state).toBeTruthy();
+            expect(scope.state).toBeTruthy();
             element.triggerHandler('switch-change');
-            expect($scope.state).toBeFalsy();
+            expect(scope.state).toBeFalsy();
+        });
+
+        it('and set its state according to the passing model', function() {
+            scope.state = true;
+            element = compile(angular.element(template))(scope);
+            scope.$digest();
+            expect(element.find('div').hasClass('switch-on')).toBeTruthy();
         });
     });
 });

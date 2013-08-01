@@ -37,6 +37,8 @@ angular.module('angularToggleDirectives', [])
 
                         if (!scope.model) {
                             scope.model = false;
+                        } else {
+                            $(element).bootstrapSwitch('setState', scope.model);
                         }
 
                         var clickingCallback = function() {
