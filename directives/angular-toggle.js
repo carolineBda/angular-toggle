@@ -29,32 +29,28 @@ angular.module('angularToggleDirectives', [])
                 model: '=ngModel'
             },
             template: '<div class="switch"><input type="checkbox" /></div>',
-            compile: function() {
-                return {
-                    post: function(scope, element, attrs, ngModel) {
+            link: function(scope, element, attrs, ngModel) {
 
-                        $(element)['bootstrapSwitch']();// call bootstrapSwitch once the directive is compiled
+                $(element)['bootstrapSwitch']();// call bootstrapSwitch once the directive is compiled
 
-                        if (!scope.model) {
-                            scope.model = false;
-                        } else {
-                            $(element).bootstrapSwitch('setState', scope.model);
-                        }
-
-                        var clickingCallback = function() {
-
-                            scope.model = ! scope.model;
-
-                            scope.$apply(function () {
-                                ngModel.$setViewValue(scope.model);
-                            });
-
-                            scope.action();
-                        };
-
-                        element.bind('switch-change', clickingCallback);
-                    }
+                if (!scope.model) {
+                    scope.model = false;
+                } else {
+                    $(element).bootstrapSwitch('setState', scope.model);
                 }
+
+                var clickingCallback = function() {
+
+                    scope.model = ! scope.model;
+
+                    scope.$apply(function () {
+                        ngModel.$setViewValue(scope.model);
+                    });
+
+                    scope.action();
+                };
+
+                element.bind('switch-change', clickingCallback);
             }
         };
     });
