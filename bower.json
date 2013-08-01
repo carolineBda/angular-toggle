@@ -10,8 +10,9 @@
         "angular-mocks": "~1.0.6"
     },
     "ignore": [
-        "**/.*",
-        "node_modules",
-        "components"
+        "package.json",
+        "test",
+        "Gruntfile.js",
+        "js/angular-toggle.js"
     ]
 }

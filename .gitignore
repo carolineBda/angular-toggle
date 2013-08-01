@@ -22,3 +22,4 @@ bower_components
 
 test_out/
 .nvm/
+libpeerconnection.log
