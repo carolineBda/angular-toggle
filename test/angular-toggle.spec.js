@@ -2,12 +2,14 @@ describe('Angular Toggle', function() {
     var element,
         scope,
         compile,
-        callBackCalled= false,
+        callBackCalled = false,
         template;
 
     beforeEach(module('angularToggleDirectives'));
     beforeEach(inject(function($compile, $rootScope) {
         scope = $rootScope.$new();
+        scope.state = false;
+        scope.disabled = false;
         scope.callback = function(){ callBackCalled = true; };
         compile = $compile;
         element = compile(angular.element(template))(scope);
@@ -32,12 +34,11 @@ describe('Angular Toggle', function() {
         });
     });
 
-    ddescribe('toggle directive element', function() {
+    describe('toggle directive element', function() {
 
-        template = '<toggle ng-model="state" action="callback()"></toggle>';
+        template = '<toggle ng-model="state" action="callback()" disabled="disabled"></toggle>';
         beforeEach(function() {
-            callBackCalled= false;
-            scope.state = false;
+            callBackCalled = false;
         });
 
         it('call bootstrap-switch when html initialise', function() {
@@ -62,6 +63,13 @@ describe('Angular Toggle', function() {
             element = compile(angular.element(template))(scope);
             scope.$digest();
             expect(element.find('div').hasClass('switch-on')).toBeTruthy();
+        });
+
+        it('and get disabled when disable is set to true', function() {
+            expect(element.find('input').attr('disabled')).toBe(undefined);
+            scope.disabled = true;
+            scope.$digest();
+            expect(element.find('input').attr('disabled')).toEqual('disabled');
         });
     });
 });

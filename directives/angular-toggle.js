@@ -23,33 +23,32 @@ angular.module('angularToggleDirectives', [])
         return {
             restrict: 'E',
             replace: true,
-            require: 'ngModel',
             scope: {
-                action: "&",
-                model: '=ngModel'
+                action: '&',
+                model: '=ngModel',
+                disabled: '='
             },
             template: '<div class="switch"><input type="checkbox" /></div>',
-            link: function(scope, element, attrs, ngModel) {
+            link: function(scope, element) {
 
-                $(element)['bootstrapSwitch']();// call bootstrapSwitch once the directive is compiled
+                $(element)['bootstrapSwitch'](); // call bootstrapSwitch once the directive is compiled
 
-                if (!scope.model) {
-                    scope.model = false;
-                } else {
-                    $(element).bootstrapSwitch('setState', scope.model, true);
-                }
+                scope.$watch('model', function(newVal) {
+                    $(element).bootstrapSwitch('setState', newVal, true);
+                });
 
-                var clickingCallback = function() {
+                scope.$watch('disabled', function(newVal) {
+                    $(element).bootstrapSwitch('setActive', !newVal);
+                });
 
-                    scope.model = ! scope.model;
-
-                    scope.$apply(function () {
-                        ngModel.$setViewValue(scope.model);
+                element.bind('switch-change', function() {
+                    scope.$apply(function(){
+                        scope.model = !scope.model;
+                    });
+                    scope.$apply(function(){
                         scope.action();
                     });
-                };
-
-                element.bind('switch-change', clickingCallback);
+                });
             }
         };
     });
