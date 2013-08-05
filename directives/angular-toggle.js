@@ -36,7 +36,7 @@ angular.module('angularToggleDirectives', [])
                 if (!scope.model) {
                     scope.model = false;
                 } else {
-                    $(element).bootstrapSwitch('setState', scope.model);
+                    $(element).bootstrapSwitch('setState', scope.model, true);
                 }
 
                 var clickingCallback = function() {
@@ -45,9 +45,8 @@ angular.module('angularToggleDirectives', [])
 
                     scope.$apply(function () {
                         ngModel.$setViewValue(scope.model);
+                        scope.action();
                     });
-
-                    scope.action();
                 };
 
                 element.bind('switch-change', clickingCallback);
