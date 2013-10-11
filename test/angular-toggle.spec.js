@@ -36,7 +36,7 @@ describe('Angular Toggle', function() {
 
     describe('toggle directive element', function() {
 
-        template = '<toggle ng-model="state" action="callback()" disabled="disabled"></toggle>';
+        template = '<toggle ng-model="state" action="callback()" is-disabled="disabled"></toggle>';
         beforeEach(function() {
             callBackCalled = false;
         });

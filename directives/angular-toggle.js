@@ -26,7 +26,7 @@ angular.module('angularToggleDirectives', [])
             scope: {
                 action: '&',
                 model: '=ngModel',
-                disabled: '='
+                isDisabled: '='
             },
             template: '<div class="switch"><input type="checkbox" /></div>',
             link: function(scope, element) {
@@ -37,7 +37,7 @@ angular.module('angularToggleDirectives', [])
                     $(element).bootstrapSwitch('setState', newVal, true);
                 });
 
-                scope.$watch('disabled', function(newVal) {
+                scope.$watch('isDisabled', function(newVal) {
                     $(element).bootstrapSwitch('setActive', !newVal);
                 });
 
